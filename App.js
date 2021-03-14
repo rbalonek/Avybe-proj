@@ -1,16 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Image,
+  Pressable,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
+  const [buttonStyleName, setButtonStyleName] = useState(
+    styles.buttonUnPressed
+  );
+  const [buttonStyleImg, setButtonStyleImg] = useState(styles.buttonUnPressed);
   const [inputNameValue, setInputNameValue] = useState();
   const [inputImgValue, setInputImgValue] = useState();
   const [inputName, setInputName] = useState("");
   const [inputImg, setInputImg] = useState("");
   const [name, setName] = useState("Please Import Name");
   const [img, setImg] = useState(
-    "https://res.cloudinary.com/bobalobbadingdong/image/upload/v1601145853/robertbalonek.com/Headshots/IMG_9570_aoed89.jpg"
+    "https://res.cloudinary.com/bobalobbadingdong/image/upload/v1615681700/robertbalonek.com/Headshots/your-img-here_ppmrbm.jpg"
   );
 
   const storeName = async (value) => {
@@ -49,18 +60,28 @@ export default function App() {
     setName(inputName);
     storeName(inputName);
     setInputNameValue("");
+    setButtonStyleName(styles.buttonPressed);
+  };
+  const btnUnclickName = () => {
+    setButtonStyleName(styles.buttonUnPressed);
+    setInputNameValue();
   };
 
   const btnClickImg = () => {
     setImg(inputImg);
     storeImg(inputImg);
     setInputImgValue("");
+    setButtonStyleImg(styles.buttonPressed);
+  };
+  const btnUnclickImg = () => {
+    setButtonStyleImg(styles.buttonUnPressed);
+    setInputImgValue();
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.welcome}>
-        <Text style={styles.welcomeText}>Welcome</Text>
+        <Text style={styles.welcomeText}>Welcome,</Text>
         <Text style={styles.name}>{name}</Text>
         <Image
           style={styles.image}
@@ -72,7 +93,7 @@ export default function App() {
       <View style={styles.inputs}>
         <TextInput
           value={inputNameValue}
-          placeholder="Change name HERE"
+          placeholder="Input name HERE"
           style={{
             height: 40,
             borderColor: "gray",
@@ -85,7 +106,7 @@ export default function App() {
 
         <TextInput
           value={inputImgValue}
-          placeholder="Change Image URL HERE"
+          placeholder="Input Image URL HERE"
           style={{
             height: 40,
             borderColor: "gray",
@@ -97,8 +118,22 @@ export default function App() {
         />
       </View>
       <View style={styles.inputs}>
-        <Button title="Change Name" onPress={btnClickName} />
-        <Button title="Change Image" onPress={btnClickImg} />
+        <Pressable
+          style={buttonStyleName}
+          title="Change Name"
+          onPressIn={btnClickName}
+          onPressOut={btnUnclickName}
+        >
+          <Text style={styles.buttonText}>Change Name</Text>
+        </Pressable>
+        <Pressable
+          style={buttonStyleImg}
+          title="Change Image"
+          onPressIn={btnClickImg}
+          onPressOut={btnUnclickImg}
+        >
+          <Text style={styles.buttonText}>Change Image</Text>
+        </Pressable>
       </View>
       <StatusBar style="auto" />
     </View>
@@ -138,10 +173,46 @@ const styles = StyleSheet.create({
     position: "relative",
     bottom: -100,
   },
-  buttons: {
+  buttonUnPressed: {
+    height: 145,
+    width: 150,
+    backgroundColor: "#f6f6f6",
+    position: "relative",
+    top: 14,
+    borderRadius: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 10,
+      height: 27,
+    },
+    textAlign: "center",
+    justifyContent: "center",
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 10,
+  },
+  buttonPressed: {
+    height: 140,
+    width: 140,
+    backgroundColor: "#f6f6f6",
+    position: "relative",
+    top: 14,
+    borderRadius: 25,
+    shadowColor: "green",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 70,
+    textAlign: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
     display: "flex",
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-around",
+    textAlign: "center",
+    fontSize: 20,
+    color: "blue",
   },
 });
