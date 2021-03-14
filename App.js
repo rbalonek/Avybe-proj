@@ -9,6 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Animatable from "react-native-animatable";
 
 export default function App() {
   const [buttonStyleName, setButtonStyleName] = useState(
@@ -23,6 +24,9 @@ export default function App() {
   const [img, setImg] = useState(
     "https://res.cloudinary.com/bobalobbadingdong/image/upload/v1615681700/robertbalonek.com/Headshots/your-img-here_ppmrbm.jpg"
   );
+  ////////TEST
+  const [animationName, resetAnimationName] = useState("flipInY");
+  const [animationImg, resetAnimationImg] = useState("flipInY");
 
   const storeName = async (value) => {
     try {
@@ -42,7 +46,9 @@ export default function App() {
       if (value !== null) {
         setName(value);
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
   };
   getName();
 
@@ -60,6 +66,7 @@ export default function App() {
     setName(inputName);
     storeName(inputName);
     setInputNameValue("");
+    resetAnimationName("flipInX");
     setButtonStyleName(styles.buttonPressed);
   };
   const btnUnclickName = () => {
@@ -71,6 +78,7 @@ export default function App() {
     setImg(inputImg);
     storeImg(inputImg);
     setInputImgValue("");
+    resetAnimationImg("flipInX");
     setButtonStyleImg(styles.buttonPressed);
   };
   const btnUnclickImg = () => {
@@ -82,13 +90,19 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.welcome}>
         <Text style={styles.welcomeText}>Welcome,</Text>
-        <Text style={styles.name}>{name}</Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri: `${img}`,
-          }}
-        />
+        <View>
+          <Animatable.Text animation={animationName} style={styles.name}>
+            {name}
+          </Animatable.Text>
+        </View>
+        <Animatable.View animation={animationImg}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: `${img}`,
+            }}
+          />
+        </Animatable.View>
       </View>
       <View style={styles.inputs}>
         <TextInput
@@ -100,6 +114,7 @@ export default function App() {
             borderWidth: 1,
             width: 200,
             textAlign: "center",
+            borderColor: "green",
           }}
           onChangeText={(text) => setInputName(text)}
         />
@@ -113,11 +128,16 @@ export default function App() {
             borderWidth: 1,
             width: 200,
             textAlign: "center",
+            borderColor: "green",
           }}
           onChangeText={(text) => setInputImg(text)}
         />
       </View>
-      <View style={styles.inputs}>
+      <Animatable.View
+        style={styles.inputs}
+        animation={"zoomInUp"}
+        duration={2000}
+      >
         <Pressable
           style={buttonStyleName}
           title="Change Name"
@@ -134,7 +154,7 @@ export default function App() {
         >
           <Text style={styles.buttonText}>Change Image</Text>
         </Pressable>
-      </View>
+      </Animatable.View>
       <StatusBar style="auto" />
     </View>
   );
