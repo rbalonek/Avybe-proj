@@ -1624,6 +1624,13 @@
     "@babel/runtime" "^7.7.2"
     regenerator-runtime "^0.13.3"
 
+"@react-native-async-storage/async-storage@^1.14.1":
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.14.1.tgz#3c2ff2b1a312df3b1c809a60fa88665e50a095b8"
+  integrity sha512-UkLUox2q5DKNYB6IMUzsuwrTJeXGLySvtQlnrqd3fd+96JErCT4X3xD+W1cvQjes0nm0LbaELbwObKc+Tea7wA==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/cli-debugger-ui@^4.13.1":
   version "4.13.1"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.13.1.tgz#07de6d4dab80ec49231de1f1fbf658b4ad39b32c"
@@ -5227,6 +5234,16 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
+
+react-native-fast-storage@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-fast-storage/-/react-native-fast-storage-0.1.5.tgz#7a0c52cef10a5eaa1bda6d232cb01dc8a1ed5c28"
+  integrity sha512-qopLSKmai0YJyQMc7i3MaZgmj1/02JNAKYh/mQLEdNhG7YRSrUEBV6skO3SLrUrjjY6K6YqU+N/SVEwvQCqABw==
+
+react-native-mmkv-storage@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv-storage/-/react-native-mmkv-storage-0.5.3.tgz#58f30ca921cfd749bd8ca7b7ffc422787db986c1"
+  integrity sha512-6JAD3IYfpdWTiQZWiKSQn4RAjbxVhyziZncvwPY2ToO/o/DiRdW4fce+ZJ755KpfBfG6EcB3is5sX+LXIJqVkA==
 
 react-native-safe-area-context@3.1.9:
   version "3.1.9"
