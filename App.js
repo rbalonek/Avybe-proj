@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
+  const [inputNameValue, setInputNameValue] = useState();
+  const [inputImgValue, setInputImgValue] = useState();
   const [inputName, setInputName] = useState("");
   const [inputImg, setInputImg] = useState("");
   const [name, setName] = useState("Please Import Name");
@@ -46,11 +48,13 @@ export default function App() {
   const btnClickName = () => {
     setName(inputName);
     storeName(inputName);
+    setInputNameValue("");
   };
 
   const btnClickImg = () => {
     setImg(inputImg);
     storeImg(inputImg);
+    setInputImgValue("");
   };
 
   return (
@@ -67,6 +71,7 @@ export default function App() {
       </View>
       <View style={styles.inputs}>
         <TextInput
+          value={inputNameValue}
           placeholder="Change name HERE"
           style={{
             height: 40,
@@ -79,6 +84,7 @@ export default function App() {
         />
 
         <TextInput
+          value={inputImgValue}
           placeholder="Change Image URL HERE"
           style={{
             height: 40,
